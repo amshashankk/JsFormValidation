@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Create Account</title>
+    <link rel="stylesheet" href="sytles.css">
+</head>
+
+<body>
+    <div class="container">
+        <form id="signup" class="form">
+            <h1 id="header"> Create Account</h1>
+            <div class="form-field">
+                <label for="fname"><span class="fullname">Name :</span></label>
+                <input type="text" name="fname" id="fname" autocomplete="off" placeholder="Enter your name">
+                <small></small>
+            </div>
+            <br>
+            <div class="form-field">
+                <label for="email"><span class="fullname">Email :</span></label>
+                <input type="text" name="email" id="email" autocomplete="off" placeholder="Enter your email">
+                <small></small>
+            </div>
+            <br>
+            <div class="form-field">
+                <label for="phone"><span class="fullname">Phone :</span></label>
+                <input type="text" name="phone" id="phone" autocomplete="off" placeholder="Enter your phone">
+                <small></small>
+            </div>
+            <br>
+            <div class="form-field">
+                <label for="date"><span class="fullname">DOB :</span></label>
+                <input type="date" name="date" id="date">
+                <small></small>
+            </div>
+            <br>
+            <div class="form-field">
+                <label for="date"><span class="fullname">Age :</span></label>
+                <span id='age'></span>
+                <small></small>
+            </div>
+            <br>
+            <div class="form-field">
+                <b class="fullname">Select Country :</b> <select name="state" id="CountrySelect" size="1">
+                    <option value="" selected="selected">Select Country</option>
+                </select>
+            </div>
+            <br>
+            <b class="fullname">Select State :</b> <select name="countrya" id="StateSelect" size="1">
+                <option value="" selected="selected">Please select Country first</option>
+            </select>
+            <br><br>
+            <b class="fullname">Select City :</b> <select name="district" id="CitySelect" size="1">
+                <option value="" selected="selected">Please select State first</option>
+            </select>
+            <br>
+            <br>
+            <div class="form-field">
+                <label for="password"> <span class="fullname">Password :</span></label>
+                <input type="password" name="password" id="password" autocomplete="off"
+                    placeholder="Enter your password">
+                <small class="password-text"></small>
+            </div>
+            <br>
+            <div class="form-field">
+                <label for="confirm-password"><span class="fullname">Confirm Password :</span></label>
+                <input type="password" name="confirm-password" id="confirm-password" autocomplete="off"
+                    placeholder="Enter your password">
+                <small></small>
+            </div>
+            <br>
+            <div class="form-field" class="stage">
+                <button type="submit" value="Sign Up" class="btn">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
