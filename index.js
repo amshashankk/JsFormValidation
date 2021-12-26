@@ -87,7 +87,7 @@ const checkPhone = () => {
 const checkDate = () => {
     let valid = false;
     const Today = new Date();
-    
+
     const year = Today.getFullYear();
     const date = DateEnter.value.trim();
     age.innerHTML = year - parseInt(date.split("-")[0]);
@@ -106,8 +106,8 @@ const checkDate = () => {
     return valid;
 }
 
-// Select Country ----------------------------------------- //
 
+// Select Country ----------------------------------------- //
 
 var CountryObject = {
     "India": {
@@ -129,7 +129,7 @@ var CountryObject = {
     },
 };
 
-function CountrySelect() {
+function CountrySelection() {
     var CountrySelect = document.getElementById("CountrySelect"),
         StateSelect = document.getElementById("StateSelect"),
         CitySelect = document.getElementById("CitySelect");
@@ -155,7 +155,7 @@ function CountrySelect() {
     }
 }
 
-CountrySelect();
+CountrySelection();
 
 
 
@@ -185,6 +185,9 @@ const checkPassword = () => {
     return valid;
 };
 
+
+// Checking Valid Confirm Password  ----------------------------------------- //
+
 const checkConfirmPassword = () => {
     let valid = false;
     const confirmPassword = ConfirmPasswordEnter.value.trim();
@@ -201,6 +204,61 @@ const checkConfirmPassword = () => {
 
     return valid;
 };
+
+// Password Progress Bar ----------------------------------------- //
+
+var password = document.getElementById("password");
+password.addEventListener('keyup', function () {
+
+    var pass = password.value;
+
+    if (pass.length === 0) {
+        document.getElementById("progresslable").innerHTML = "";
+        document.getElementById("progress").value = "0";
+        return;
+    }
+
+
+    var p = [/[a-z]/, /[A-Z]/, /[0-9]/, /[!_@#$%^&*]/].reduce((m, t) => m + t.test(pass), 0);
+
+    if (p  > 2 && pass.length > 7) {
+        p++;
+    }
+
+    var progress = "";
+    var strength = "";
+
+    switch (p) {
+        case 0:  
+        progress = "0";
+        strength = "weak"; 
+        break;
+    case 1:
+        progress = "10";
+        strength = "weak";
+        break;
+    case 2:
+        strength = "weak";
+        progress = "25";
+        break;
+    case 3:
+        strength = "medium";
+        progress = "50"; 
+        break;
+    case 4:
+        strength = "medium";
+        progress = "75";
+        break;
+    case 5:
+        strength = "Good";
+        progress = "100";
+        break;
+}
+
+    document.getElementById("progresslable").innerHTML = strength;
+    document.getElementById("progress").value = progress;
+});
+
 
 
 
@@ -291,82 +349,35 @@ form.addEventListener('input', debounce(function (e) {
 
 
 
-
-
-// Password Progress Bar   In development ----------------------------------------- //
-
-const isPasswordSecure = (password) => {
-    const re = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
-    return re.test(password);
-};
-
-
-function isGood(password) {
-    var password_strength = document.getElementById("password-text");
-
-    if (password.length == 0) {
-        password_strength.innerHTML = "";
-        return;
-    }
-
-
-
-    var passed = 0;
-
-    for (var i = 0; i < re.length; i++) {
-        if (re[i].test(password)) {
-            passed++;
-        }
-    }
-
-    var strength = "";
-    switch (passed) {
-        case 0:
-        case 1:
-        case 2:
-            strength = "<small class='progress-bar bg-danger' style='width: 40%'>Weak</small>";
-            break;
-        case 3:
-            strength = "<small class='progress-bar bg-warning' style='width: 60%'>Medium</small>";
-            break;
-        case 4:
-            strength = "<small class='progress-bar bg-success' style='width: 100%'>Strong</small>";
-            break;
-
-    }
-    password_strength.innerHTML = strength;
-
-};
-
-
-
 // Show Submitted details ----------------------------------------- //
 
 
-function Shows_All_Details() {
+function PreviewDetails() {
     checkfname();
     checkEmail();
     checkPhone();
     checkDate();
+    CountrySelection();
+    checkPassword();
+    checkConfirmPassword();
 
 
+    if (checkfname() == true && checkEmail() == true && checkPhone() == true && datevalidate() == true && CountrySelection() == true && checkPassword() == true && checkConfirmPassword() == true) {
 
-    if (CheckName() == true && CheckEmail_Address() == true && checkPhone_Number() == true && datevalidate() == true && CountryAndState() == true && passValidator() == true && passConfirm() == true) {
+        var name = document.getElementById("fname").value;
+        document.getElementById("showName").innerHTML = NameEnter;
 
-        var name = document.getElementById("Name").value;
-        document.getElementById("showName").innerHTML = name;
+        var email = document.getElementById("email").value;
+        document.getElementById("ShowEmail").innerHTML = EmailEnter;
 
-        var email = document.getElementById("myEmail").value;
-        document.getElementById("ShowEmail").innerHTML = email;
-
-        var phoneno = document.getElementById("myPhone").value;
-        document.getElementById("ShowMyphoneno").innerHTML = phoneno;
+        var phoneno = document.getElementById("phone").value;
+        document.getElementById("ShowMyphoneno").innerHTML = PhoneEnter;
 
         var age = document.getElementById("age").value;
         document.getElementById("showage").innerHTML = age;
 
-        var country = document.getElementById("country").value;
-        document.getElementById("showCountry").innerHTML = country;
+        var country = document.getElementById("CountrySelect").value;
+        document.getElementById("showcountry").innerHTML = country;
 
         document.getElementById("submitmessage").innerHTML = "";
 
