@@ -96,8 +96,15 @@ body {
   color: var(--error-color);
 }
 
+#progresslable {
+  border-radius: 4px;
+  color: #000000;
+  font-size: 14px;
+  font-weight: bold;
+}
 
-/* button */
+
+
 .stage {
   box-sizing: border-box;
   position: absolute;
